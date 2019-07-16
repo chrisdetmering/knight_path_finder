@@ -30,7 +30,17 @@ class KnightPathFinder
     end
 
 
-    def build_move_tree
+    def new_move_positions(pos)
+        new_positions = []
+        
+        self.valid_moves(pos).each do |position| 
+            if !@considered_positions.include?(position)
+                new_positions.push(position)
+                @considered_positions.push(position)
+            end
+        end 
+
+        new_positions
     end 
 
 
