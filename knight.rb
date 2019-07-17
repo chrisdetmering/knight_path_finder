@@ -1,5 +1,5 @@
 require_relative "tree"
-
+require 'byebug'
 
 class KnightPathFinder 
 
@@ -25,16 +25,20 @@ attr_reader :start_pos
 
     def find_path(end_pos)
         end_node = root_node.bfs(end_pos)
-
+        
+        trace_path_back(end_node)
     end
 
-    def trace_path_back(end_node)
-        path = []
+    def trace_path_back(node)
+        path = [node]
 
-        until path.first == start_pos
+        until path.first.value == start_pos
+            cur_node = path[0]
+            next_node = cur_node.parent 
+            path.unshift(next_node)
         end 
 
-        path 
+        path.map(&:value) 
     end 
 
     def self.valid_moves(pos)
@@ -92,6 +96,6 @@ attr_reader :start_pos
     
 end 
 
-new_search = KnightPathFinder.new([1, 1])
+new_search = KnightPathFinder.new([0, 0])
 
-puts new_search.find_path([7, 5]) 
+print new_search.find_path([7, 6])
