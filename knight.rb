@@ -29,6 +29,14 @@ attr_reader :start_pos
         trace_path_back(end_node)
     end
 
+    private_constant :MOVES
+
+private
+
+attr_accessor :root_node, :considered_positions
+
+
+
     def trace_path_back(node)
         path = [node]
 
@@ -71,8 +79,6 @@ attr_reader :start_pos
         new_positions
     end 
 
-    attr_accessor :root_node
-
     def build_move_tree 
         self.root_node = PolyTreeNode.new(start_pos)
         nodes = [root_node]
@@ -96,6 +102,8 @@ attr_reader :start_pos
     
 end 
 
-new_search = KnightPathFinder.new([0, 0])
 
-print new_search.find_path([7, 6])
+if $PROGRAM_NAME == __FILE__
+  kpf = KnightPathFinder.new([0, 0])
+  p kpf.find_path([7, 7])
+end
