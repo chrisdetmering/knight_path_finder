@@ -23,8 +23,21 @@ attr_reader :start_pos
         build_move_tree
     end
 
+    def find_path(end_pos)
+        end_node = root_node.bfs(end_pos)
 
-     def self.valid_moves(pos)
+    end
+
+    def trace_path_back(end_node)
+        path = []
+
+        until path.first == start_pos
+        end 
+
+        path 
+    end 
+
+    def self.valid_moves(pos)
         valid_moves = []
         
         cur_x, cur_y = pos 
@@ -72,9 +85,7 @@ attr_reader :start_pos
                 
                 nodes << new_node
             end 
-
         end 
-
     end 
 
     
@@ -83,4 +94,4 @@ end
 
 new_search = KnightPathFinder.new([1, 1])
 
-p new_search
+puts new_search.find_path([7, 5]) 
